@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block start %}
+<!-- Floating Action Button -->
+<a href="/create-project/"><div class="fab">+</div></a>
+
+<style>
+  .fab {
+    position: fixed;
+    top: 120px;   /* below the fixed navbar */
+    left: 50%;   /* center horizontally */
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: #3498db;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 1000;  /* make sure it's above everything */
+  }
+
+  .fab:hover { 
+    background: #2980b9;
+    /* transform: scale(1.2); */
+  }
+
+  .card {
+    top: 200px;
+  }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        {% for project in all_projects %}
+        
+            <div class="col-md-4 mb-4">
+                <div class="card h-100" >
+                  <a href="/project-description/{{ project.id }}/">
+                    <img src="https://qualitygb.com/wp-content/uploads/2022/09/Projet-manager.png" class="card-img-top p-3" alt="Project Image">
+                  </a> 
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <!-- <p class="card-text">{{ project.description }}</p> -->
+                        <p class="card-text"><small class="text-muted">Tags: {{ project.tags }}</small></p>
+                        <p class="card-text"><small class="text-muted">Deadline: {{ project.days_remaining }} days</small></p>
+                        <p class="card-text"><small class="text-muted">Created by: {{ project.creater }}</small></p>
+                        <a href="/project-discussion/{{ project.id }}/" class="btn btn-primary btn-sm">Enter Discussion</a>
+                    </div>
+                </div>
+            </div>
+            
+        {% empty %}
+            <p class="text-center">No projects available.</p>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block end %}
+{% endblock %}

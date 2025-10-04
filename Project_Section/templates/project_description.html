@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block start %}
+
+<div style="position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:white; color:black; display:flex; justify-content:center; align-items:center; padding:20px; box-sizing:border-box;">
+    <div style="width:90%; height:90%; background-color:white; color:black; padding:20px; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.2); display:flex; flex-direction:column; overflow:hidden;">
+        
+        <h2 style="margin-bottom:10px;">{{ project.title }}</h2>
+        
+        <div style="margin-bottom:10px;">
+            <strong>Deadline:</strong> {{ project.days_remaining }} days<br>
+            <strong>Completed:</strong> {{ project.completed }}%
+        </div>
+        
+        <div style="flex:1; overflow-y:auto; border-top:1px solid #ccc; padding-top:10px;">
+            {{ project.description }}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

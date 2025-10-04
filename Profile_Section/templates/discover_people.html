@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block start %}
+
+<div class="container mt-5">
+  <div class="row">
+    {% for p in all_profiles %}
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex">
+        <div class="card flex-fill profile-card" style="border:none; box-shadow:none;">
+          {% include 'profile_card.html' %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% endblock %}

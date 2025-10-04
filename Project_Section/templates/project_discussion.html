@@ -1,0 +1,58 @@
+
+
+{% extends 'base.html' %}
+{% block start %}
+
+<section style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                width: 25vw; height: 50vh; z-index: 1000;">
+
+    <div class="card" id="chat2" style="width: 100%; height: 100%; border: none; border-radius: 10px; 
+              box-shadow: 0 0 15px rgba(0,0,0,0.3); display: flex; flex-direction: column; background-color: white;">
+
+        <!-- Header -->
+        <div class="card-header"
+            style="padding: 0.5rem 1rem; background-color: #007bff; color: white; font-weight: bold; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            {{project_title}}
+        </div>
+
+        <!-- Body -->
+        <div class="card-body" style="flex: 1; overflow-y: auto; padding: 0.5rem;">
+
+
+            <!-- Add more messages similarly -->
+            {% for message in all_messages %}
+                {% if message.sender == user %}
+                    <div style="margin-bottom: 0.5rem; text-align: right;">
+                        <span style="font-size: 10px; font-weight: bold; color: #007bff;">You</span>
+                        <p
+                            style="display: inline-block; background-color: #007bff; color: white; padding: 5px 8px; margin: 2px 0 0 0; border-radius: 8px; font-size: 12px;">
+                            {{ message.content }}</p>
+                    </div>
+                {% else %}
+                    <div style="margin-bottom: 0.5rem;">
+                        <span style="font-size: 10px; font-weight: bold; color: #555;">{{ message.sender.username }}</span>
+                        <p
+                            style="background-color: #f0f2f5; padding: 5px 8px; margin: 2px 0 0 0; border-radius: 8px; font-size: 12px;">
+                            {{ message.content }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
+        <!-- Footer -->
+
+
+        <form method="post" action="/project-discussion/{{ pid }}/" class="d-flex align-items-center">
+            {% csrf_token %}
+            <div class="card-footer" style="padding: 0.5rem; display: flex; gap: 0.25rem; border-top: 1px solid #ddd;">
+                <input type="text" placeholder="Type message" name="message_text"
+                    style="flex: 1; border: 1px solid #ccc; border-radius: 5px; padding: 0.25rem;">
+                <button type="submit"
+                    style="background-color: #007bff; color: white; border: none; border-radius: 5px; padding: 0 0.5rem;">Send</button>
+            </div>
+        </form>
+
+    </div>
+</section>
+{% endblock %}

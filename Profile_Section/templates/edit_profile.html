@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block start %}
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <form method="post" enctype="multipart/form-data" action="/update-profile/">
+        {% csrf_token %}
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" width="150px"
+                        src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                    <span class="font-weight-bold">{{ user.first_name }} {{ user.last_name }}</span>
+                    <span class="text-black-50">{{ user.username }}</span>
+                </div>
+            </div>
+
+            <!-- Middle Column -->
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Profile Settings</h4>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <label class="labels">First Name</label>
+                            <input type="text" name="first_name" class="form-control" value="{{ user.first_name }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">Last Name</label>
+                            <input type="text" name="last_name" class="form-control" value="{{ user.last_name }}">
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <label class="labels">Mobile Number</label>
+                            <input type="text" name="phone" class="form-control" value="{{ profile.phone }}">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="labels">Education</label>
+                            <input type="text" name="education" class="form-control" value="{{ profile.education }}">
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label class="labels">Country</label>
+                            <input type="text" name="country" class="form-control" value="{{ profile.country }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="labels">City</label>
+                            <input type="text" name="city" class="form-control" value="{{ profile.city }}">
+                        </div>
+                    </div>
+
+                    <div class="mt-5 text-center">
+                        <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-4">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience">
+                        <span>Edit Profession and Bio</span>
+                    </div><br>
+                    <div class="col-md-12">
+                        <label class="labels">Profession</label>
+                        <input type="text" name="profession" class="form-control" value="{{ profile.profession }}">
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <label class="labels">Bio</label>
+                        <input type="text" name="bio" class="form-control" value="{{ profile.bio }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    body {
+        background: #f8f9fa;
+    }
+    .labels {
+        font-size: 11px;
+    }
+    .profile-button {
+        background: rgb(99, 39, 120);
+        box-shadow: none;
+        border: none;
+    }
+    .profile-button:hover, .profile-button:focus, .profile-button:active {
+        background: #682773;
+        box-shadow: none;
+    }
+</style>
+
+{% endblock %}
