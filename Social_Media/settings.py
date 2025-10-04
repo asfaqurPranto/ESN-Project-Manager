@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['esn-project-manager-2.onrender.com', 'localhost', '127.0.0.1']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://esn-project-manager-2.onrender.com',
+    'https://esn-project-manager-3.onrender.com',
+]
 
 # Application definition
 
